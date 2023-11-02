@@ -13,6 +13,7 @@ function App() {
     <BrowserRouter>
     {/* <Navbar></Navbar> */}
     <h1>Hello World</h1>
+    <h2>Desde rama develope</h2>
     <button className='btn btn-primary'>Boton</button>
     <main>
       <Routes>
