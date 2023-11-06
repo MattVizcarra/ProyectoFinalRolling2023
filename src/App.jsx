@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './Components/Navbar/Navbar'
+import Footer from './Components/Footer/Footer'
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
         {/* <Route path="/cart" element={<SobreNosotros/>}></Route> */}
       </Routes>
     </main>
-    {/* <Footer></Footer> */}
+    <Footer></Footer>
 
       </BrowserRouter>
     </>
