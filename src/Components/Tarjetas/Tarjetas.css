@@ -1,0 +1,27 @@
+.LetraMenu {
+    color: #10846F;
+}
+
+.BotonTarjeta {
+    background-color: #10846F;
+    color: white;
+        border: 1px solid transparent;
+        padding: 0.6em 1.2em;
+        font-size: 1em;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+        transition: border-color 0.25s;
+}
+
+.BotonTarjeta:hover {
+    border: solid;
+    border-color: #10846F;
+    background-color: white;
+    color: #10846F;
+}
+.Body {
+    background-image: url(https://static.vecteezy.com/system/resources/previews/026/416/625/non_2x/green-leaves-background-ai-generative-free-photo.jpg) !important;
+    height: 100vh;
+    width: 100vw;
+}
