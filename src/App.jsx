@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+import PaginaPrincipal from './components/paginaPrincipal/paginaPrincipal'
+
 function App() {
 
 
@@ -17,12 +19,13 @@ function App() {
     <button className='btn btn-primary'>Boton</button>
     <main>
       <Routes>
-        {/* <Route exact path="/" element={<Inicio/>} /> */}
+        <Route exact path="/" element={<PaginaPrincipal/>} />
         {/* <Route path="/cart" element={<SobreNosotros/>}></Route> */}
       </Routes>
     </main>
     {/* <Footer></Footer> */}
-
+        
+    {/* <PaginaPrincipal/> */}
       </BrowserRouter>
     </>
   )
