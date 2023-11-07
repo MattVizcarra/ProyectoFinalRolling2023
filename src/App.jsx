@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from './Components/Navbar/Navbar'
+import Footer from './Components/Footer/Footer'
+
 
 import PaginaPrincipal from './components/paginaPrincipal/paginaPrincipal'
 
@@ -16,6 +17,7 @@ function App() {
     {/* <Navbar></Navbar> */}
     <h1>Hello World</h1>
     <h2>Desde rama develope</h2>
+    <Navbar></Navbar>
     <button className='btn btn-primary'>Boton</button>
     <main>
       <Routes>
@@ -23,9 +25,7 @@ function App() {
         {/* <Route path="/cart" element={<SobreNosotros/>}></Route> */}
       </Routes>
     </main>
-    {/* <Footer></Footer> */}
-        
-    {/* <PaginaPrincipal/> */}
+
       </BrowserRouter>
     </>
   )
