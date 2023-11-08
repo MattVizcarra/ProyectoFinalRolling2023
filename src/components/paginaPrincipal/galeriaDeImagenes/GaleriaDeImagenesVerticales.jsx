@@ -16,11 +16,9 @@ function GaleriaImagenes(){
                 galeriaImagenesVerticales.map((imagenVertical)=>{
                                 return (
                                         <>
-                                        <div className="col-3 mx-2 mb-4 imagenDescriopcion">
-                                            <li key = {imagenVertical.id}>
-                                                <img src={imagenVertical.imgenUrl} alt={imagenVertical.descripcion} className="imgenesDecorado"/>
-                                            </li>
-                                            </div>
+                                        <div className="col col-3 mx-1 mb-4 " key = {imagenVertical.id}>
+                                            <img src={imagenVertical.imgenUrl} alt={imagenVertical.descripcion} className="imgenesDecorado"/>
+                                        </div>
                                         </>
                                         )
                              })

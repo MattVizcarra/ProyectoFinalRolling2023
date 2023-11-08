@@ -20,7 +20,10 @@
     text-align: center;
     justify-content: space-around;
     align-items: center;
-    /* align-items: auto;
-    text-align: auto; */
+    /* align-items: auto; */
+    /* text-align: auto; */
 }
 
+li{
+    list-style: none;
+}
