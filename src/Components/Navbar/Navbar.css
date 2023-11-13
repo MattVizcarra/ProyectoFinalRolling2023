@@ -1,0 +1,45 @@
+li {
+    list-style: none;
+    color: white;
+}
+
+:link {
+    text-decoration: none;
+}
+
+li:hover {
+    color: #10846F;
+}
+
+header {
+    position: relative;
+    margin: 0;
+}
+
+.Navbar {
+    width: 100vw;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.PaginasNav {
+    display: flex;
+    gap: 2rem;
+
+}
+
+.BotonNav {
+    background-color: #10846F;
+    color: white;
+}
+
+.BotonNav:hover {
+    border: solid;
+    border-color: #10846F;
+    background-color: white;
+    color: #10846F;
+}
