@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import MenuForm from './MenuForm';
 import MenuTable from './MenuTable';
+
+const apiUrl = 'https://restaurantedb.onrender.com/api/menus'; // Reemplaza con la URL real de tu API
 
 const categoriesOptions = [
   'Entradas',
@@ -21,59 +23,114 @@ const FormMenu = () => {
     price: '',
     detail: '',
     category: '',
+    url: '',
   });
-  const [menus, setMenus] = useState([
-    { id: 1234, name: 'Pastel de Papas', isAvailable: true, price: '1500', detail: 'Delicioso pastel con papas', category: 'Plato Principal' },
-    { id: 154, name: '12 empanadas', isAvailable: true, price: '200', detail: 'Docena de empanadas variadas', category: 'Entradas' },
-  ]);
+  const [menus, setMenus] = useState([]);
   const [editingMenuId, setEditingMenuId] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
+  useEffect(() => {
+    // Obtener la lista de menús al cargar el componente
+    fetchMenus();
+  }, []);
+
+  const fetchMenus = async () => {
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setMenus(data);
+    } catch (error) {
+      console.error('Error al obtener menús:', error);
+    }
+  };
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === 'checkbox' ? checked : value;
     setFormDataMenu({ ...formDataMenu, [name]: newValue });
+    fetchMenus();
   };
 
-  const handleSubmit = () => {
-    if (formDataMenu.name && formDataMenu.price) {
+  const createOrUpdateMenu = async () => {
+    try {
+      const method = editingMenuId !== null ? 'PUT' : 'POST';
+      const url = editingMenuId !== null ? `${apiUrl}/${editingMenuId}` : apiUrl;
+
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formDataMenu),
+      });
+
+      const data = await response.json();
+
       if (editingMenuId !== null) {
+        // Actualización exitosa
         const updatedMenus = menus.map((menu) =>
-          menu.id === editingMenuId ? { ...menu, ...formDataMenu } : menu
+          menu.id === editingMenuId ? { ...menu, ...data.menu } : menu
         );
         setMenus(updatedMenus);
         setEditingMenuId(null);
+        fetchMenus();
       } else {
-        const newMenu = { ...formDataMenu, id: Date.now() };
-        setMenus([...menus, newMenu]);
+        // Creación exitosa
+        setMenus([...menus, data.menu]);
+        fetchMenus();
       }
+
+      // Limpiar el formulario
       setFormDataMenu({
         name: '',
         isAvailable: false,
         price: '',
         detail: '',
         category: '',
+        url: '',
       });
+
       setShowForm(false);
+    } catch (error) {
+      console.error('Error al guardar menú:', error);
     }
   };
 
   const handleEdit = (menuId) => {
     setEditingMenuId(menuId);
-    const menuToEdit = menus.find((menu) => menu.id === menuId);
-    setFormDataMenu({
-      name: menuToEdit.name,
-      isAvailable: menuToEdit.isAvailable,
-      price: menuToEdit.price,
-      detail: menuToEdit.detail,
-      category: menuToEdit.category,
-    });
-    setShowForm(true);
+    const menuToEdit = menus.find((menu) => menu._id === menuId);
+  
+    if (menuToEdit) {
+      setFormDataMenu({
+        name: menuToEdit.name,
+        isAvailable: menuToEdit.isAvailable,
+        price: menuToEdit.price,
+        detail: menuToEdit.detail,
+        category: menuToEdit.category,
+        url: menuToEdit.url || '',
+      });
+      setShowForm(true);
+    } else {
+      console.error('Menú no encontrado:', menuId);
+    }
   };
 
-  const handleDelete = (menuId) => {
-    const updatedMenus = menus.filter((menu) => menu.id !== menuId);
-    setMenus(updatedMenus);
+  const handleDelete = async (menuId) => {
+    try {
+      const response = await fetch(`${apiUrl}/${menuId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.status === 200) {
+        // Eliminación exitosa
+        const updatedMenus = menus.filter((menu) => menu.id !== menuId);
+        setMenus(updatedMenus);
+        fetchMenus();
+      } else {
+        console.error('Error al eliminar menú:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al eliminar menú:', error);
+    }
   };
 
   const handleAddMenu = () => {
@@ -88,6 +145,7 @@ const FormMenu = () => {
       price: '',
       detail: '',
       category: '',
+      url: '',
     });
     setShowForm(false);
   };
@@ -101,7 +159,9 @@ const FormMenu = () => {
       <h1>Formulario de Menús</h1>
       <div>
         {!showForm && (
-          <Button variant="primary m-1" onClick={handleAddMenu}>Agregar Menú</Button>
+          <Button variant="primary m-1" onClick={handleAddMenu}>
+            Agregar Menú
+          </Button>
         )}
       </div>
       {showForm && (
@@ -110,8 +170,8 @@ const FormMenu = () => {
           showForm={showForm}
           editingMenuId={editingMenuId}
           categoriesOptions={categoriesOptions}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
+          handleChange={(e) => handleChange(e)}
+          handleSubmit={() => createOrUpdateMenu()}
           handleCancelEdit={handleCancelEdit}
           handleCancelAddMenu={handleCancelAddMenu}
         />
@@ -119,6 +179,6 @@ const FormMenu = () => {
       <MenuTable menus={menus} handleEdit={handleEdit} handleDelete={handleDelete} />
     </div>
   );
-}
+};
 
 export default FormMenu;
