@@ -2,7 +2,7 @@ import Slider from "./sliderCarrusel/slider";
 import ElijaSuMenu from "./elijaSuMenu/ElijaSuMenu";
 // import GaleriaImagenes from "./galeriaDeImagenes/galeriaDeImagenesVertical.jsx"
 import GaleriaImagenes from "./galeriaDeImagenes/GaleriaDeImagenesVerticales";
-
+import BotonWhatsapp from "../BotonWhatsapp/BotonWhatsapp.jsx"
 function PaginaPrincipal(){
 
     return(
@@ -10,6 +10,7 @@ function PaginaPrincipal(){
             <Slider/>
             <ElijaSuMenu/>
             <GaleriaImagenes/>
+            <BotonWhatsapp/>
         </>
     );
 }
