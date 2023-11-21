@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { MdCancel } from "react-icons/md";
+import { FaSave } from "react-icons/fa";
 
 const UserForm = ({ formData, handleChange, handleSubmit, handleCancel, error }) => {
   const [formErrors, setFormErrors] = useState({
@@ -29,7 +31,7 @@ const UserForm = ({ formData, handleChange, handleSubmit, handleCancel, error })
   return (
     <Container className='mt-5'>
       <Row className='justify-content-center'>
-        <Col xs={10} sm={10} md={6} lg={6}>
+        <Col style={{backgroundColor:"white", margin:40, padding:20, borderRadius:20}} xs={10} sm={10} md={6} lg={6}>
           <Form>
             <Form.Group>
               <Form.Label>Nombre:</Form.Label>
@@ -71,7 +73,7 @@ const UserForm = ({ formData, handleChange, handleSubmit, handleCancel, error })
             <Form.Group>
               <Form.Label>Contraseña:</Form.Label>
               <Form.Control
-                type='password'
+                type='text'
                 name='password'
                 placeholder='Contraseña'
                 value={formData.password}
@@ -93,10 +95,10 @@ const UserForm = ({ formData, handleChange, handleSubmit, handleCancel, error })
             </Form.Group>
 
             <Button className='btn btn-success m-1' onClick={handleFormSubmit}>
-              {formData.editingUserId !== null ? 'Guardar' : 'Enviar'}
+            <FaSave style={{fontSize: '25px'}} />
             </Button>
             <Button className='btn btn-secondary m-1' onClick={handleCancel}>
-              Cancelar
+            <MdCancel style={{fontSize: '25px'}} />
             </Button>
 
             {error && (
