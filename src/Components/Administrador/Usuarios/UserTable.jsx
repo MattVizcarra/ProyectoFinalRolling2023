@@ -1,5 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import { FaEdit } from "react-icons/fa";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 const UserTable = ({ users, handleEdit, handleDelete }) => {
   return (
@@ -26,10 +28,10 @@ const UserTable = ({ users, handleEdit, handleDelete }) => {
             <td>{user.isAdmin ? 'Sí' : 'No'}</td>
             <td>
               <button className="btn btn-warning m-1" onClick={() => handleEdit(user._id)}>
-                Editar
+              <FaEdit style={{fontSize: '25px'}} />
               </button>
               <button className="btn btn-danger m-1" onClick={() => handleDelete(user._id)}>
-                Deshabilitar
+              <FaDeleteLeft style={{fontSize: '25px'}} />
               </button>
             </td>
           </tr>
@@ -37,6 +39,6 @@ const UserTable = ({ users, handleEdit, handleDelete }) => {
       </tbody>
     </Table>
   );
-};
 
+};
 export default UserTable;

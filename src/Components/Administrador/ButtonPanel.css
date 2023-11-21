@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+.button-panel {
+    background-color: rgb(16, 132, 111);
+    padding:20px;
+
+  }
+  
+  .container-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-family: 'Dancing Script', cursive;
+    
+
+  }
+  
+  .container-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .form-col {
+    width: 100%;
+
+  }
+  .tituloform {
+    color: white;
+    font-family: 'Dancing Script', cursive;
+  }
+  
+
