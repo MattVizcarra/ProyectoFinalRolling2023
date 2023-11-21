@@ -1,5 +1,5 @@
 /* Aqui se desarrolla el css del la galeriaDeImagenes de la page principal */
-
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap');
 
 .imgenesDecorado{
     width: 100%;
@@ -26,4 +26,13 @@
 
 li{
     list-style: none;
+}
+
+.titulosGaleriaVertical{
+    color: whitesmoke;
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    align-items: center;
+    margin: 5%;
+    
 }

@@ -11,6 +11,7 @@ function GaleriaImagenes(){
     return(
         <Container>
         <>
+            <h1 className="titulosGaleriaVertical">Nuestros servicios siempre llevados a su mesa.</h1>
             <div className="row alineacionImagenes"> 
                 {
                 galeriaImagenesVerticales.map((imagenVertical)=>{
