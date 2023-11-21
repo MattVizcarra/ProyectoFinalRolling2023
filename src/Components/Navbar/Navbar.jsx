@@ -1,15 +1,13 @@
 import React from "react";
-
+import "../Navbar/Navbar.css";
+import Tarjetas from "../Tarjetas/Tarjetas";
+import { Route, Routes } from 'react-router-dom'
 
 import { Link } from "react-router-dom";
 
 function Navbar() {
 return (
-
 <>
-
-    
-
 <header>
 <nav className="Navbar">
   <div>
