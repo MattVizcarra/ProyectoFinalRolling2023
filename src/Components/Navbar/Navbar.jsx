@@ -2,6 +2,7 @@ import React from "react";
 import "../Navbar/Navbar.css";
 import Tarjetas from "../Tarjetas/Tarjetas";
 import { Route, Routes } from 'react-router-dom'
+
 import { Link } from "react-router-dom";
 
 function Navbar() {
@@ -19,7 +20,7 @@ return (
   <button className="BotonNav">Iniciar sesión</button>
 </nav>
 
-    <Routes>
+  <Routes>
       <Route path='/'/>
       <Route path='/Tarjetas' Component={Tarjetas}/> 
     </Routes>

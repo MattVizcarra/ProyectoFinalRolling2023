@@ -2,7 +2,10 @@ import React from 'react'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './Components/Navbar/Navbar'
+import Footer from './Components/Footer/Footer'
 
+
+import PaginaPrincipal from './components/paginaPrincipal/paginaPrincipal'
 
 function App() {
 
@@ -18,11 +21,10 @@ function App() {
     <button className='btn btn-primary'>Boton</button>
     <main>
       <Routes>
-        {/* <Route exact path="/" element={<Inicio/>} /> */}
+        <Route exact path="/" element={<PaginaPrincipal/>} />
         {/* <Route path="/cart" element={<SobreNosotros/>}></Route> */}
       </Routes>
     </main>
-    {/* <Footer></Footer> */}
 
       </BrowserRouter>
     </>

@@ -1,0 +1,47 @@
+/* Desarrollamos el estilo del carrusel/slider de fotos*/
+.carousel-indicators {
+    display: none;
+}
+
+.carousel-control-next-icon {
+    background-color: rgba(31, 32, 32, 0.404);
+}
+
+.carousel-control-prev-icon {
+    background-color: rgba(31, 32, 32, 0.404);
+}
+
+.d-block {
+    height:70vh;
+    width: 100% !important;
+    margin-bottom: 0rem;
+    border-bottom: 5px solid #0D1348;
+    box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.63);
+    /* webkit-box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.63); */
+    -moz-box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.63);
+}
+
+img{
+    object-fit: cover;
+}
+
+@media(max-width:700px) {
+    .d-block {
+        height: 20rem;
+    }
+}
+
+@media(max-width:420px) {
+    .d-block {
+        height: 32vh;
+    }
+
+    .carousel-control-prev-icon{
+        display: none;
+    }
+
+    .carousel-control-next-icon {
+        display: none;
+    }
+
+}
