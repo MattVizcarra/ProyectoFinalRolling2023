@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { Button } from 'react-bootstrap';
+// import { Link } from 'react-router-dom'
+// import { Button } from 'react-bootstrap';
 import error from '../../assets/ImagenesError404/imagenError404_02.jpg'
 import './Error404.css'
 

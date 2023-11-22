@@ -6,6 +6,7 @@ import Nosotros from "../Nosotros/Nosotros";
 import { Route, Routes } from 'react-router-dom';
 
 import { Link } from "react-router-dom";
+import MiCarritoTabla from "../MiCarrito/MiCarritoTabla";
 
 
 function Navbar() {
@@ -22,7 +23,11 @@ return (
       <Link to='/Tarjetas'><li>MENÚ</li></Link>
     </ul>
   </div>
+  <div>
   <Link to='/Acceso'><button className="BotonNav">Iniciar sesión</button></Link>
+  <Link to='/Carrito'><button className="BotonNav">Carrito</button></Link>
+  </div>
+
 </nav>
 
   <Routes>
@@ -30,6 +35,7 @@ return (
       <Route path='/Tarjetas' Component={Tarjetas}/> 
       <Route path='/Acceso' Component={Login} />
       <Route path='/Nosotros' Component={Nosotros}/>
+      <Route path='/Carrito' Component={MiCarritoTabla}/>
     </Routes>
 
 
