@@ -66,7 +66,7 @@ const carrito = [
             ))}
           </tbody>
         </table>
-        <h2>Total a pagar: $ {precioTotal}</h2>
+        <h2 className='tituloCarrito'>Total a pagar: $ {precioTotal}</h2>
      </>
     ) : (
       <>
