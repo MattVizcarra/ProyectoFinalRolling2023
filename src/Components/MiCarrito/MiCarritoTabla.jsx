@@ -10,74 +10,64 @@ const carrito = [
   ];
 
 
-const MiCarritoTabla = () => {
-  // const [carritos,setCarritos] = useState([]);
-  // const [carritos, setCarrito] = useState (carrito);
-  // function disminuirPlato(id){
-  //   console.log(id);
-  //  setCarrito(carritos.filter((producto) => producto.id !== id)); 
-  //   // carrito=carrito.filter((producto) => producto.id !== id)
-  // }
+  const MiCarritoTabla = () => {
+    const [pedidoMiCarrito, setPedidoMiCarrito] = useState(carrito);
   
-  // const [carro, setCarro] = useState([]);
-
-  // useEffect(() => {
-  //   setplan(carrito.find((carro) => carro.id == carro.id));
-  // }, []);
-
-  function disminuirPlato(id){
-    // console.log(producto);
-    for (const producto of carrito) {
-          // console.log(product.name);
-          if(producto.id == id){
-              if (producto.cantidad>1) {
-                  producto.cantidad=producto-1;
-              }else{
-                  carrito.filter((producto)=> producto.id !== id);
-                  console.log(carrito);
-                  }
-          }
-    }
+    const disminuirProducto = (idProducto) => {
+        setPedidoMiCarrito((menu) => menu.map((plato) =>
+        plato.id === idProducto ? { ...plato, cantidad: Math.max(plato.cantidad - 1, 0) } : plato
+        )
+      );
+    };
   
-  }
-  return carrito.length>0? (
-    <>
-    <div>
-        <h1 className='tituloCarrito'>Mi Carrito</h1>
-        
-    </div>
-    <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">NOMBRE</th>
-            <th scope="col">DETALLE</th>
-            <th scope="col">PRECIO UNITARIO</th>
-            <th scope="col">CANTIDAD</th>
-            <th scope="col">ELIMINAR</th>
-            <th scope="col">SUBTOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-          {carrito.map((producto) => (
-            <tr key={producto.id}>
-              <th>{producto.nombre}</th>
-              <td>{producto.detalle}</td>
-              <td>{producto.precio}</td>
-              <td>
-              <button className='botonDisminuir'>-</button>
-                {producto.cantidad}
-                <button className='botonAgregar'>+</button>
-              </td>
-              <td>
-                  <button className='botonEliminar'>Eliminar</button>
-              </td>
-              <td>{producto.cantidad * producto.precio}</td>
+    const agregarProducto = (idProducto) => {
+        setPedidoMiCarrito((menu) => menu.map((plato) => 
+        (plato.id === idProducto ? { ...plato, cantidad: plato.cantidad + 1 } : plato))
+        );
+    };
+  
+    const EliminarMenu = (idProducto) => {
+        setPedidoMiCarrito((menu) => menu.filter((plato) => plato.id !== idProducto));
+      };
+    
+    return pedidoMiCarrito.length>0? (
+      <>
+      <div>
+          <h1 className='tituloCarrito'>Mi Carrito</h1>
+          
+      </div>
+      <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">NOMBRE</th>
+              <th scope="col">DETALLE</th>
+              <th scope="col">PRECIO UNITARIO</th>
+              <th scope="col">CANTIDAD</th>
+              <th scope="col">ELIMINAR</th>
+              <th scope="col">SUBTOTAL</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-   </>
-  ) : (<h2 className='tituloCarrito'>El carrito esta vacio</h2>);
-}; 
-
-export default MiCarritoTabla
+          </thead>
+          <tbody>
+            {pedidoMiCarrito.map((producto) => (
+              <tr key={producto.id}>
+                <th>{producto.nombre}</th>
+                <td>{producto.detalle}</td>
+                <td>{producto.precio}</td>
+                <td>
+                <button className='botonDisminuir' onClick={() => disminuirProducto(producto.id)}>-  </button>
+                  {producto.cantidad}
+                  <button className='botonAgregar'onClick={() => agregarProducto(producto.id)}>  +</button>
+                </td>
+                <td>
+                    <button className='botonEliminar' onClick={() => EliminarMenu(producto.id)}>Eliminar</button>
+                </td>
+                <td>{producto.cantidad * producto.precio}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+     </>
+    ) : (<h2 className='tituloCarrito'>El carrito esta vacio</h2>);
+  }; 
+  
+  export default MiCarritoTabla
