@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Imagen from '../assets/loginvector.png';
-import ImageProfile from '../assets/profile1.jpg';
+// import Imagen from '../assets/loginvector.png';
+// import ImageProfile from '../assets/profile1.jpg';
 
-import appFirebase from '../credenciales';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+// import appFirebase from '../credenciales';
+// import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
-const auth = getAuth(appFirebase);
+// const auth = getAuth(appFirebase);
 
 const Login = () => {
     const [registrando, setRegistrando] = useState(false);

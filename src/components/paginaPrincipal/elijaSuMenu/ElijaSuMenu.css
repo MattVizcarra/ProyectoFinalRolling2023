@@ -5,8 +5,9 @@
 .tarjetaSeccion02{
     color: whitesmoke;
     font-family: 'Dancing Script', cursive;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     min-height: 15vh;
+    width: 100%;
 }
 
 .alineacionBoton{

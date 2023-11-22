@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import '../Tarjetas/Tarjetas.css';
 
@@ -25,8 +28,10 @@ function Tarjetas() {
     <div className='Body'>
     <h1 className="LetraMenu">Nuestro Menú</h1>
         <h3 className="LetraMenu">hace tu pedido</h3>
-    <div className='d-flex-container justify-content-center row'>
-    <div className='Tarjetas d-flex justify-content-center col-xl-3 col-lg-10 col-md-10 col-sm-12' > {tarjetas.map(item =>
+        <Container>
+          <Row className='d-flex-container justify-content-center'>
+            <Col className='Tarjetas d-flex justify-content-center col-xl-3 col-lg-10 col-md-10 col-sm-12'>
+            {tarjetas.map(item =>
     <div style={{ margin: '1rem' }} key={item.id}>
         <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={item.url} style={{ height: '15rem' }} />
@@ -43,7 +48,11 @@ function Tarjetas() {
     </Card>
     </div>
     )} 
-    </div>
+            </Col>
+          </Row>
+        </Container>
+    <div className='d-flex-container justify-content-center '>
+    
     </div>
     </div>
     </>

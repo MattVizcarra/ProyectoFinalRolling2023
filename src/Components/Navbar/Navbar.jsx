@@ -1,9 +1,10 @@
 import React from "react";
 import "../Navbar/Navbar.css";
 import Tarjetas from "../Tarjetas/Tarjetas";
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom';
 
 import { Link } from "react-router-dom";
+import Login from "../Acceso/Acceso";
 
 function Navbar() {
 return (
@@ -17,12 +18,13 @@ return (
       <Link to='/Tarjetas'><li>MENÚ</li></Link>
     </ul>
   </div>
-  <button className="BotonNav">Iniciar sesión</button>
+  <Link to='/Acceso'><button className="BotonNav">Iniciar sesión</button></Link>
 </nav>
 
   <Routes>
       <Route path='/'/>
       <Route path='/Tarjetas' Component={Tarjetas}/> 
+      <Route path='/Acceso' Component={Login} />
     </Routes>
 
 
