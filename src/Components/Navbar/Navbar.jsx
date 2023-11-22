@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Link } from "react-router-dom";
 import MiCarritoTabla from "../MiCarrito/MiCarritoTabla";
+import ButtonPanel from "../Administrador/ButtonPanel";
 
 
 function Navbar() {
@@ -21,6 +22,7 @@ return (
       <Link to='/'><li>INICIO</li></Link>
       <Link to='/Nosotros'><li>NOSOTROS</li></Link>
       <Link to='/Tarjetas'><li>MENÚ</li></Link>
+      <Link to='/Abm'></Link>
     </ul>
   </div>
   <div>
@@ -36,6 +38,7 @@ return (
       <Route path='/Acceso' Component={Login} />
       <Route path='/Nosotros' Component={Nosotros}/>
       <Route path='/Carrito' Component={MiCarritoTabla}/>
+      <Route path="Abm" Component={ButtonPanel}/>
     </Routes>
 
 
