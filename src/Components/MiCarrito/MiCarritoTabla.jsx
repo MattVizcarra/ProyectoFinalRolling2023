@@ -29,7 +29,7 @@ const carrito = [
     const EliminarMenu = (idProducto) => {
         setPedidoMiCarrito((menu) => menu.filter((plato) => plato.id !== idProducto));
       };
-    
+    const precioTotal = pedidoMiCarrito.reduce((total,menu)=> total + menu.precio * menu.cantidad, 0);
     return pedidoMiCarrito.length>0? (
       <>
       <div>
@@ -66,8 +66,14 @@ const carrito = [
             ))}
           </tbody>
         </table>
+        <h2>Total a pagar: $ {precioTotal}</h2>
      </>
-    ) : (<h2 className='tituloCarrito'>El carrito esta vacio</h2>);
+    ) : (
+      <>
+      <h2 className='tituloCarrito'>El carrito esta vacio</h2>
+      <button className='btn btn-success'>Ir a elegir menu</button>
+      </>
+      );
   }; 
   
   export default MiCarritoTabla
