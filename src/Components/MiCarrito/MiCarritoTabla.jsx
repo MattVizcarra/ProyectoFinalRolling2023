@@ -67,6 +67,7 @@ const carrito = [
           </tbody>
         </table>
         <h2 className='tituloCarrito'>Total a pagar: $ {precioTotal}</h2>
+        <button className='btn btn-success mt-3'>Comprar</button>
      </>
     ) : (
       <>
