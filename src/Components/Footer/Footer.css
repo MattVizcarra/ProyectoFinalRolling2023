@@ -1,17 +1,37 @@
+.LetraFooter {
+    color: #10846F;
+}
+
+@import url('https: //fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap');
+
+.LetraFooterTitulo {
+
+    color: #10846F;
+    font-family: 'Dancing Script', cursive;
+}
+
 .Footer {
-    width: 100vw;
+    width: 100%;
     height: 400px;
     background-color: #FFDEEA;
-    align-items: center;
 }
 
 .col1-Footer {
+    margin-top: 5% !important;
     background-color: white;
-    width: 30rem;
     height: 250px;
+    width: 400px !important;
+    display: flex;
+    align-items: center;
 }
 
-.col2-Footer {
+.ImgFoter {
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+}
+
+/* .col2-Footer {
     background-color: white;
     width: 29rem;
     height: 250px;
@@ -21,15 +41,5 @@
     background-color: white;
     width: 30rem;
     height: 250px;
-}
+} */
 
-.LetraFooter {
-    color: #10846F;
-}
-
-@import url('https: //fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap');
-
-.LetraFooterTitulo{
-    color: #10846F;
-    font-family: 'Dancing Script', cursive;
-}

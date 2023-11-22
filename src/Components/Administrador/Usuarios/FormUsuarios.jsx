@@ -138,7 +138,7 @@ const FormUsuariosContainer = () => {
 
   return (
     <div>
-      <h1>Formulario de Usuarios</h1>
+      <h1 className="tituloform">Formulario de Usuarios</h1>
       {isFormVisible ? (
         <UserForm
           formData={formData}

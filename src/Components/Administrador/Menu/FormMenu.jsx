@@ -122,9 +122,9 @@ const FormMenu = () => {
 
       if (response.status === 200) {
         // Eliminación exitosa
-        const updatedMenus = menus.filter((menu) => menu.id !== menuId);
+        const updatedMenus = menus.filter((menu) => menu._id !== menuId);
         setMenus(updatedMenus);
-        fetchMenus();
+        //fetchMenus();
       } else {
         console.error('Error al eliminar menú:', response.statusText);
       }
@@ -156,7 +156,7 @@ const FormMenu = () => {
 
   return (
     <div>
-      <h1>Formulario de Menús</h1>
+      <h1 className="tituloform">Formulario de Menús</h1>
       <div>
         {!showForm && (
           <Button variant="primary m-1" onClick={handleAddMenu}>

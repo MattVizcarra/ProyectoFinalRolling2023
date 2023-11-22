@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Col, Container, Row } from 'react-bootstrap';
 import handleChange from "./FormMenu";
+import { MdCancel } from "react-icons/md";
+import { FaSave } from "react-icons/fa";
 
 const MenuForm = ({
   formDataMenu,
@@ -48,7 +50,7 @@ const MenuForm = ({
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
-        <Col xs={10} sm={10} md={6} lg={6}>
+        <Col style={{backgroundColor:"white", margin:40, padding:20, borderRadius:20}} xs={10} sm={10} md={6} lg={6}>
           <Form>
             <Form.Group>
               <Form.Label>Nombre:</Form.Label>
@@ -121,14 +123,11 @@ const MenuForm = ({
               <small className="text-danger">{formErrors.category}</small>
             </Form.Group>
             <Button variant="success" onClick={handleFormSubmit}>
-              {editingMenuId !== null ? 'Guardar' : 'Enviar'}
+            <FaSave style={{fontSize: '25px'}} />
             </Button>
-            {editingMenuId !== null && (
-              <Button variant="secondary m-1" onClick={handleCancelEdit}>Cancelar</Button>
-            )}
-            {editingMenuId === null && (
-              <Button variant="secondary m-1" onClick={handleCancelAddMenu}>Cancelar</Button>
-            )}
+            <Button variant="secondary m-1" onClick={handleCancelEdit}>
+            <MdCancel style={{fontSize: '25px'}} />
+              </Button>
           </Form>
         </Col>
       </Row>

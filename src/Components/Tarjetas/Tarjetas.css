@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap');
+
 .LetraMenu {
-    color: #10846F;
+    color: whitesmoke;
+        font-family: 'Dancing Script', cursive;
+        text-align: center;
+        align-items: center;
 }
 
 .BotonTarjeta {
@@ -23,5 +28,5 @@
 .Body {
     background-image: url(https://static.vecteezy.com/system/resources/previews/026/416/625/non_2x/green-leaves-background-ai-generative-free-photo.jpg) !important;
     height: 100vh;
-    width: 100vw;
+    /* width: 100vw; */
 }
