@@ -1,7 +1,7 @@
 import React from "react";
 import "../Navbar/Navbar.css";
 import Tarjetas from "../Tarjetas/Tarjetas";
-import Login from "../Acceso/Acceso";
+ import Login from "../Acceso/Acceso";
 import Nosotros from "../Nosotros/Nosotros";
 import { Route, Routes } from 'react-router-dom';
 
