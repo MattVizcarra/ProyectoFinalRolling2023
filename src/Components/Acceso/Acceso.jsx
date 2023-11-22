@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-// import Imagen from '../assets/loginvector.png';
-// import ImageProfile from '../assets/profile1.jpg';
 
-// import appFirebase from '../credenciales';
-// import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import Imagen from '../../assets/Login/loginvector.png';
+import ImageProfile from '../../assets/Login/profile1.jpg';
+
+import appFirebase from '../Acceso/Credenciales/Credenciales';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+
 
 // const auth = getAuth(appFirebase);
 

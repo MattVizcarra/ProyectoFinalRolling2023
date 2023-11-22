@@ -13,6 +13,7 @@ function App() {
   return (
     <>
     <BrowserRouter>
+
     <main>
       <Navbar></Navbar>
       <Routes>
