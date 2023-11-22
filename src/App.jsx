@@ -1,8 +1,11 @@
 import React from 'react'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Navbar from './Components/Navbar/Navbar'
-import Footer from './Components/Footer/Footer'
+//import Navbar from './Components/Navbar/Navbar'
+//import Footer from './Components/Footer/Footer'
+import second from './Components/Acceso/Acceso'
+import second from './Components/Acceso/Credenciales/Credenciales'
+
 
 
 import PaginaPrincipal from './components/paginaPrincipal/paginaPrincipal'
@@ -17,7 +20,7 @@ function App() {
     {/* <Navbar></Navbar> */}
     <h1>Hello World</h1>
     <h2>Desde rama develope</h2>
-    <Navbar></Navbar>
+    {/*<Navbar></Navbar> */}
     <button className='btn btn-primary'>Boton</button>
     <main>
       <Routes>
