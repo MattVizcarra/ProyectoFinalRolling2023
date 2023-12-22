@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap");
+
+.tarjetaEquipo {
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  padding: 1rem;
+  margin-bottom: 5rem;
+  background-color: black;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.titulosEquipo {
+  margin-top: 58px;
+  margin-bottom: 50px;
+  text-align: center;
+  color: whitesmoke;
+  font-family: "Dancing Script", cursive;
+}

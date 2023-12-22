@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap");
+
+.imgenesDecorado {
+  width: 100%;
+  border-radius: 5px;
+  opacity: 0.78;
+  /* cursor: pointer; */
+}
+
+.imgenesDecorado:hover {
+  opacity: 1;
+  transition: all 300ms;
+  transform: scale(1.1);
+}
+
+.alineacionImagenes {
+  /* color: whitesmoke; */
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+  /* align-items: auto; */
+  /* text-align: auto; */
+}
+
+li {
+  list-style: none;
+}
+
+.titulosGaleriaVertical {
+  color: whitesmoke;
+  font-family: "Dancing Script", cursive;
+  text-align: center;
+  align-items: center;
+  margin: 5%;
+}

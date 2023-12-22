@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap");
+
+.tituloCarrito {
+  font-family: "Dancing Script", cursive;
+  text-align: center;
+  align-items: center;
+  margin: 5%;
+}
+
+.botonDisminuir {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.botonAgregar {
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.botonEliminar {
+  color: snow;
+  background-color: brown;
+  border-radius: 7px;
+}
+
+.table {
+  background-color: rgb(206, 252, 231);
+}

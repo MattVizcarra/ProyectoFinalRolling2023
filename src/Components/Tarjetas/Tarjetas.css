@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap");
+
+.LetraMenu {
+  color: whitesmoke;
+  font-family: "Dancing Script", cursive;
+  text-align: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.BotonTarjeta {
+  background-color: #10846f;
+  color: white;
+  border: 1px solid transparent;
+  padding: 1em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.BotonTarjeta:hover {
+  border: solid;
+  border-color: #10846f;
+  background-color: white;
+  color: #10846f;
+  padding: 0.9em;
+}
+
+.Body {
+  background-image: url(https://static.vecteezy.com/system/resources/previews/026/416/625/non_2x/green-leaves-background-ai-generative-free-photo.jpg) !important;
+  min-height: 100vh;
+  position: relative;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.category-buttons button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.category-buttons button.active {
+  background-color: #007bff;
+  color: #fff;
+}

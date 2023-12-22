@@ -1,0 +1,14 @@
+.ImgNavbar {
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  margin-right: 30px;
+}
+
+/* Estilos CSS para el efecto hover */
+
+.nav-link-hover:hover {
+  color: #ffffff;
+  background-color: #469a85;
+  border-radius: 4px;
+}
