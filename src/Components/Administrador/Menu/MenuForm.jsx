@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Form, Button, Col, Container, Row } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button, Col, Container, Row } from "react-bootstrap";
 import handleChange from "./FormMenu";
 import { MdCancel } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
@@ -15,25 +15,34 @@ const MenuForm = ({
   handleCancelAddMenu,
 }) => {
   const [formErrors, setFormErrors] = useState({
-    name: '',
-    price: '',
-    detail: '',
-    category: '',
-    url: '', // Agregamos el campo URL en formErrors
+    name: "",
+    price: "",
+    detail: "",
+    category: "",
+    url: "",
   });
 
   const validateForm = () => {
     const errors = {
-      name: (formDataMenu.name.length >= 6 && formDataMenu.name.length <= 50) ? '' : 'El nombre debe tener entre 6 y 50 caracteres',
-      price: formDataMenu.price ? '' : 'El precio es obligatorio',
-      category: formDataMenu.category ? '' : 'Seleccione una categoría',
-      detail: (formDataMenu.detail.length >= 10 && formDataMenu.detail.length <= 200) ? '' : 'debe tener entre 10 y 200 caracteres',
-      url: (formDataMenu.url && isValidUrl(formDataMenu.url)) ? '' : 'Ingrese una URL válida', // Validación de URL
+      name:
+        formDataMenu.name.length >= 6 && formDataMenu.name.length <= 50
+          ? ""
+          : "El nombre debe tener entre 6 y 50 caracteres",
+      price: formDataMenu.price ? "" : "El precio es obligatorio",
+      category: formDataMenu.category ? "" : "Seleccione una categoría",
+      detail:
+        formDataMenu.detail.length >= 10 && formDataMenu.detail.length <= 200
+          ? ""
+          : "debe tener entre 10 y 200 caracteres",
+      url:
+        formDataMenu.url && isValidUrl(formDataMenu.url)
+          ? ""
+          : "Ingrese una URL válida",
     };
 
     setFormErrors(errors);
 
-    return Object.values(errors).every((error) => error === '');
+    return Object.values(errors).every((error) => error === "");
   };
 
   const isValidUrl = (url) => {
@@ -50,7 +59,18 @@ const MenuForm = ({
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
-        <Col style={{backgroundColor:"white", margin:40, padding:20, borderRadius:20}} xs={10} sm={10} md={6} lg={6}>
+        <Col
+          style={{
+            backgroundColor: "white",
+            margin: 40,
+            padding: 20,
+            borderRadius: 20,
+          }}
+          xs={10}
+          sm={10}
+          md={6}
+          lg={6}
+        >
           <Form>
             <Form.Group>
               <Form.Label>Nombre:</Form.Label>
@@ -123,11 +143,11 @@ const MenuForm = ({
               <small className="text-danger">{formErrors.category}</small>
             </Form.Group>
             <Button variant="success" onClick={handleFormSubmit}>
-            <FaSave style={{fontSize: '25px'}} />
+              <FaSave style={{ fontSize: "25px" }} />
             </Button>
             <Button variant="secondary m-1" onClick={handleCancelEdit}>
-            <MdCancel style={{fontSize: '25px'}} />
-              </Button>
+              <MdCancel style={{ fontSize: "25px" }} />
+            </Button>
           </Form>
         </Col>
       </Row>

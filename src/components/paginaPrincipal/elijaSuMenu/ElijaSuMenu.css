@@ -1,21 +1,19 @@
-/* Importamos la letra */
-@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Dancing+Script&family=Noto+Serif:wght@500&display=swap");
 
-
-.tarjetaSeccion02{
-    color: whitesmoke;
-    font-family: 'Dancing Script', cursive;
-    /* border-radius: 8px; */
-    min-height: 15vh;
-    width: 100%;
+.tarjetaSeccion02 {
+  color: whitesmoke;
+  font-family: "Dancing Script", cursive;
+  /* border-radius: 8px; */
+  min-height: 15vh;
+  width: 100%;
 }
 
-.alineacionBoton{
-    color: whitesmoke;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    /* align-items: auto;
+.alineacionBoton {
+  color: whitesmoke;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  /* align-items: auto;
     text-align: auto; */
 }

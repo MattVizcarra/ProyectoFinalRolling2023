@@ -1,83 +1,110 @@
-import React, { useState } from 'react';
-import ImageProfile from '../../assets/Login/profile1.jpg';
-import Imagen from '../../assets/Login/loginvector.png';
-// import appFirebase from '../Acceso/Credenciales/Credenciales'
-// import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import '../Acceso/Acceso.css'
-
-// const auth = getAuth(appFirebase);
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ImageProfile from "../../assets/Login/profile1.jpg";
+import Imagen from "../../assets/Login/loginvector.png";
+import "../Acceso/Acceso.css";
+import { Link } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 const Login = () => {
-    const [registrando, setRegistrando] = useState(false);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-    const functAutenticacion = async (e) => {
-        e.preventDefault();
-        const correo = e.target.email.value;
-        const contraseña = e.target.password.value;
+  const functAutenticacion = async (e) => {
+    e.preventDefault();
+    const correo = e.target.email.value;
+    const contraseña = e.target.password.value;
 
-        // Validación de correo electrónico
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(correo)) {
-            alert("Por favor, ingresa un correo electrónico válido");
-            return;
+    try {
+      setLoading(true);
+
+      const response = await fetch(
+        "https://restaurantedb.onrender.com/api/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: correo, password: contraseña }),
         }
+      );
 
-        // Validación de contraseña
-        const minPasswordLength = 8;
-        const maxPasswordLength = 20; // Ajusta la longitud máxima según sea necesario
+      if (response.ok) {
+        const data = await response.json();
+        alert("Inicio de sesión exitoso");
 
-        if (contraseña.length < minPasswordLength || contraseña.length > maxPasswordLength) {
-            alert(`La contraseña debe tener entre ${minPasswordLength} y ${maxPasswordLength} caracteres`);
-            return;
-        }
+        // cookies
+        document.cookie = `token=${data.token}; max-age=${3600}; path=/`;
+        document.cookie = `isAdmin=${data.isAdmin}; max-age=${3600}; path=/`;
+        document.cookie = `_id=${data._id}; max-age=${3600}; path=/`;
 
-        if (registrando) {
-            try {
-                await createUserWithEmailAndPassword(auth, correo, contraseña);
-                alert("Registro exitoso");
-            } catch (error) {
-                alert("Asegúrate de que la contraseña tenga al menos 8 caracteres");
-            }
-        } else {
-            try {
-                await signInWithEmailAndPassword(auth, correo, contraseña);
-                alert("Inicio de sesión exitoso");
-            } catch (error) {
-                alert("El correo o la contraseña son incorrectos");
-            }
-        }
-    };
+        navigate("/");
+      } else if (response.status === 401) {
+        alert("Correo o contraseña incorrectos");
+      } else {
+        alert("Error in API request. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error in API request:", error);
+      alert("Error in API request. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    return (
-        <div className='container'>
-            <div className="row">
-                {/* columna más pequeña formulario */}
-                <div className="col-md-4">
-                    <div className="padre">
-                        <div className="card card-body shadow-lg">
-                            <img src={ImageProfile} alt="" className='estilo-profile' />
-                            <form onSubmit={functAutenticacion} >
-                                <input type="text" placeholder='Ingresar Email' className='cajatexto' id='email' />
-                                <input type="password" placeholder='Ingresar Contraseña' className='cajatexto' id='password' />
-                                <button className='btnform'> {registrando ? "Registrate" : "Iniciar Sesión"} </button>
-                            </form>
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-4">
+          <div className="padre">
+            <div className="card card-body shadow-lg">
+              <img src={ImageProfile} alt="" className="estilo-profile" />
+              <form onSubmit={functAutenticacion}>
+                <input
+                  type="text"
+                  placeholder="Ingresar Email"
+                  className="cajatexto"
+                  id="email"
+                />
+                <input
+                  type="password"
+                  placeholder="Ingresar Contraseña"
+                  className="cajatexto"
+                  id="password"
+                />
+                <button className="btnform" type="submit">
+                  {loading ? (
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    "Iniciar Sesión"
+                  )}
+                </button>
+              </form>
 
-                            <h4 className='texto'> {registrando ? "¿Ya tienes cuenta?" : "¿No tienes cuenta?"}
-                                <button className='btnswicth' onClick={() => setRegistrando(!registrando)}>
-                                    {registrando ? "Iniciar Sesión" : "Registrate"}
-                                </button>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-
-                {/* columna más grande */}
-                <div className="col-md-8">
-                    <img src={Imagen} alt="" className='tamaño-imagen' />
-                </div>
+              <h4 className="texto">
+                ¿No tenés cuenta?
+                <button className="btnswicth">
+                  <Link to="/Registro" style={{ color: "inherit" }}>
+                    Registrate
+                  </Link>
+                </button>
+              </h4>
             </div>
+          </div>
         </div>
-    );
+
+        <div className="col-md-8">
+          <img src={Imagen} alt="" className="tamaño-imagen" />
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Login
+export default Login;

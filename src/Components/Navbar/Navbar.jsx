@@ -1,51 +1,142 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { Navbar, Nav, Button, Image } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import "../Navbar/Navbar.css";
-import Tarjetas from "../Tarjetas/Tarjetas";
- import Login from "../Acceso/Acceso";
-import Nosotros from "../Nosotros/Nosotros";
-import { Route, Routes } from 'react-router-dom';
 
-import { Link } from "react-router-dom";
-import MiCarritoTabla from "../MiCarrito/MiCarritoTabla";
-import ButtonPanel from "../Administrador/ButtonPanel";
+function NavigationBar() {
+  const imageUrl =
+    "https://th.bing.com/th/id/R.fbd95cf106ab3bcd3acb48263703790d?rik=xbEXpTHKreYWQQ&pid=ImgRaw&r=0";
 
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      const decodedValue = decodeURIComponent(parts.pop().split(";").shift());
+      return decodedValue === "undefined" ? null : decodedValue;
+    }
+    return null;
+  };
 
-function Navbar() {
-  const imageUrl = 'https://th.bing.com/th/id/R.fbd95cf106ab3bcd3acb48263703790d?rik=xbEXpTHKreYWQQ&pid=ImgRaw&r=0'
-return (
-<>
-<header>
-<nav className="Navbar">
-  <div>
-    <ul className="PaginasNav">
-    <Link to='/'><img src={imageUrl} className='ImgNavbar' alt="Logo de la pagina" /></Link>
-      <Link to='/'><li>INICIO</li></Link>
-      <Link to='/Nosotros'><li>NOSOTROS</li></Link>
-      <Link to='/Tarjetas'><li>MENÚ</li></Link>
-      <Link to='/Abm'></Link>
-    </ul>
-  </div>
-  <div>
-  <Link to='/Acceso'><button className="BotonNav">Iniciar sesión</button></Link>
-  <Link to='/Carrito'><button className="BotonNav">Carrito</button></Link>
-  </div>
+  const [isLoggedIn, setIsLoggedIn] = useState(!!getCookie("token"));
+  const [isAdmin, setIsAdmin] = useState(JSON.parse(getCookie("isAdmin")));
+  const [renderKey, setRenderKey] = useState(0);
 
-</nav>
+  const navigate = useNavigate();
 
-  <Routes>
-      <Route path='/'/>
-      <Route path='/Tarjetas' Component={Tarjetas}/> 
-      <Route path='/Acceso' Component={Login} />
-      <Route path='/Nosotros' Component={Nosotros}/>
-      <Route path='/Carrito' Component={MiCarritoTabla}/>
-      <Route path="Abm" Component={ButtonPanel}/>
-    </Routes>
+  const handleButtonClick = useCallback(() => {
+    setRenderKey((prevKey) => prevKey + 1);
+  }, []);
 
+  const handleLogout = () => {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie =
+      "isAdmin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-</header>
-    
+    setIsLoggedIn(false);
+    setIsAdmin(false);
+
+    handleButtonClick();
+
+    navigate("/");
+  };
+
+  useEffect(() => {
+    setIsLoggedIn(!!getCookie("token"));
+    setIsAdmin(JSON.parse(getCookie("isAdmin")));
+  }, [renderKey, getCookie]);
+
+  return (
+    <>
+      <Navbar className="px-3 text-white" expand="sm">
+        <Navbar.Brand as={Link} to="/">
+          <Image src={imageUrl} className="ImgNavbar" alt="Logo de la pagina" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto flex-grow-1 letrasnav">
+            <Nav.Item>
+              <Nav.Link
+                className="nav-link-hover text-white"
+                as={Link}
+                to="/"
+                onClick={handleButtonClick}
+              >
+                INICIO
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                className="nav-link-hover text-white"
+                as={Link}
+                to="/Nosotros"
+                onClick={handleButtonClick}
+              >
+                NOSOTROS
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                className="nav-link-hover text-white"
+                as={Link}
+                to="/Tarjetas"
+                onClick={handleButtonClick}
+              >
+                MENÚ
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
+          <Nav className="ml-auto">
+            {isLoggedIn ? (
+              <>
+                <Nav.Item>
+                  <Nav.Link
+                    className="nav-link-hover text-white"
+                    as={Link}
+                    to="/Carrito"
+                    onClick={handleButtonClick}
+                  >
+                    Carrito
+                  </Nav.Link>
+                </Nav.Item>
+                {isAdmin && (
+                  <Nav.Item>
+                    <Nav.Link
+                      className="nav-link-hover text-white"
+                      as={Link}
+                      to="/Abm"
+                      onClick={handleButtonClick}
+                    >
+                      CRUD
+                    </Nav.Link>
+                  </Nav.Item>
+                )}
+                <Nav.Item>
+                  <Nav.Link
+                    className="nav-link-hover text-white"
+                    onClick={handleLogout}
+                  >
+                    Desloguearse
+                  </Nav.Link>
+                </Nav.Item>
+              </>
+            ) : (
+              <Nav.Item>
+                <Nav.Link
+                  className="nav-link-hover text-white"
+                  as={Link}
+                  to="/Acceso"
+                  onClick={handleButtonClick}
+                >
+                  INICIAR SESIÓN
+                </Nav.Link>
+              </Nav.Item>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </>
   );
 }
 
-export default Navbar;
+export default NavigationBar;

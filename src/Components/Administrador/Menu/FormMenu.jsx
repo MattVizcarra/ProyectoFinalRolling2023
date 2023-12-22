@@ -1,29 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
-import MenuForm from './MenuForm';
-import MenuTable from './MenuTable';
+import React, { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
+import MenuForm from "./MenuForm";
+import MenuTable from "./MenuTable";
 
-const apiUrl = 'https://restaurantedb.onrender.com/api/menus'; // Reemplaza con la URL real de tu API
+const apiUrl = "https://restaurantedb.onrender.com/api/menus";
 
-const categoriesOptions = [
-  'Entradas',
-  'Plato Principal',
-  'Guarniciones',
-  'Sopas y Cremas',
-  'Pizzas',
-  'Postres',
-  'Bebidas',
-  'Especiales de la Casa',
-];
+const categoriesOptions = ["Bebidas", "Entradas", "Plato Principal", "Postres"];
 
 const FormMenu = () => {
   const [formDataMenu, setFormDataMenu] = useState({
-    name: '',
+    name: "",
     isAvailable: false,
-    price: '',
-    detail: '',
-    category: '',
-    url: '',
+    price: "",
+    detail: "",
+    category: "",
+    url: "",
   });
   const [menus, setMenus] = useState([]);
   const [editingMenuId, setEditingMenuId] = useState(null);
@@ -40,25 +31,26 @@ const FormMenu = () => {
       const data = await response.json();
       setMenus(data);
     } catch (error) {
-      console.error('Error al obtener menús:', error);
+      console.error("Error al obtener menús:", error);
     }
   };
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    const newValue = type === 'checkbox' ? checked : value;
+    const newValue = type === "checkbox" ? checked : value;
     setFormDataMenu({ ...formDataMenu, [name]: newValue });
     fetchMenus();
   };
 
   const createOrUpdateMenu = async () => {
     try {
-      const method = editingMenuId !== null ? 'PUT' : 'POST';
-      const url = editingMenuId !== null ? `${apiUrl}/${editingMenuId}` : apiUrl;
+      const method = editingMenuId !== null ? "PUT" : "POST";
+      const url =
+        editingMenuId !== null ? `${apiUrl}/${editingMenuId}` : apiUrl;
 
       const response = await fetch(url, {
         method,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formDataMenu),
       });
@@ -81,24 +73,24 @@ const FormMenu = () => {
 
       // Limpiar el formulario
       setFormDataMenu({
-        name: '',
+        name: "",
         isAvailable: false,
-        price: '',
-        detail: '',
-        category: '',
-        url: '',
+        price: "",
+        detail: "",
+        category: "",
+        url: "",
       });
 
       setShowForm(false);
     } catch (error) {
-      console.error('Error al guardar menú:', error);
+      console.error("Error al guardar menú:", error);
     }
   };
 
   const handleEdit = (menuId) => {
     setEditingMenuId(menuId);
     const menuToEdit = menus.find((menu) => menu._id === menuId);
-  
+
     if (menuToEdit) {
       setFormDataMenu({
         name: menuToEdit.name,
@@ -106,18 +98,18 @@ const FormMenu = () => {
         price: menuToEdit.price,
         detail: menuToEdit.detail,
         category: menuToEdit.category,
-        url: menuToEdit.url || '',
+        url: menuToEdit.url || "",
       });
       setShowForm(true);
     } else {
-      console.error('Menú no encontrado:', menuId);
+      console.error("Menú no encontrado:", menuId);
     }
   };
 
   const handleDelete = async (menuId) => {
     try {
       const response = await fetch(`${apiUrl}/${menuId}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
 
       if (response.status === 200) {
@@ -126,10 +118,10 @@ const FormMenu = () => {
         setMenus(updatedMenus);
         //fetchMenus();
       } else {
-        console.error('Error al eliminar menú:', response.statusText);
+        console.error("Error al eliminar menú:", response.statusText);
       }
     } catch (error) {
-      console.error('Error al eliminar menú:', error);
+      console.error("Error al eliminar menú:", error);
     }
   };
 
@@ -140,12 +132,12 @@ const FormMenu = () => {
   const handleCancelEdit = () => {
     setEditingMenuId(null);
     setFormDataMenu({
-      name: '',
+      name: "",
       isAvailable: false,
-      price: '',
-      detail: '',
-      category: '',
-      url: '',
+      price: "",
+      detail: "",
+      category: "",
+      url: "",
     });
     setShowForm(false);
   };
@@ -176,7 +168,11 @@ const FormMenu = () => {
           handleCancelAddMenu={handleCancelAddMenu}
         />
       )}
-      <MenuTable menus={menus} handleEdit={handleEdit} handleDelete={handleDelete} />
+      <MenuTable
+        menus={menus}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };
