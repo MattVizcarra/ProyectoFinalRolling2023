@@ -1,20 +1,18 @@
 .whatsappBotonEstilo {
-    position: fixed;
-    bottom: 15px;
-    left: 15px;
-    /* right: 0px; */
-    z-index: 10;
-    
-  }
-  
-  .whatsappBotonEstilon a {
-    display: block;
-  }
-  
-  .whatsappBotonEstilo a img {
-    width: 15%;
-  }
-  .whatsappBotonEstilo img:hover{
-    transform:scale(1.2,1.2) !important;
-    transition: all .2s !important;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 10;
+}
+
+.whatsappBotonEstilon a {
+  display: block;
+}
+
+.whatsappBotonEstilo a img {
+  width: 15%;
+}
+.whatsappBotonEstilo img:hover {
+  transform: scale(1.2, 1.2) !important;
+  transition: all 0.2s !important;
 }

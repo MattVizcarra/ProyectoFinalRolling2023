@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import UserForm from './UserForm';
-import UserTable from './UserTable';
+import React, { useState, useEffect } from "react";
+import UserForm from "./UserForm";
+import UserTable from "./UserTable";
 
 const FormUsuariosContainer = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    name: "",
+    email: "",
     isActive: false,
-    password: '',
+    password: "",
     isAdmin: false,
     editingUserId: null,
   });
 
   const [users, setUsers] = useState([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://restaurantedb.onrender.com/api/usuarios');
+      const response = await fetch(
+        "https://restaurantedb.onrender.com/api/usuarios"
+      );
       const data = await response.json();
       setUsers(data);
     } catch (error) {
-      console.error('Error al obtener usuarios:', error);
+      console.error("Error al obtener usuarios:", error);
     }
   };
 
@@ -32,28 +34,33 @@ const FormUsuariosContainer = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    const newValue = type === 'checkbox' ? checked : value;
+    const newValue = type === "checkbox" ? checked : value;
     setFormData({ ...formData, [name]: newValue });
   };
 
   const handleSubmit = async () => {
     try {
-      const method = formData.editingUserId ? 'PUT' : 'POST';
+      const method = formData.editingUserId ? "PUT" : "POST";
       const url = formData.editingUserId
         ? `https://restaurantedb.onrender.com/api/usuarios/${formData.editingUserId}`
-        : 'https://restaurantedb.onrender.com/api/usuarios';
+        : "https://restaurantedb.onrender.com/api/usuarios";
 
-      const emailExists = users.some(user => user.email === formData.email && user._id !== formData.editingUserId);
+      const emailExists = users.some(
+        (user) =>
+          user.email === formData.email && user._id !== formData.editingUserId
+      );
 
       if (emailExists) {
-        setError('El correo electrónico ya está en uso. Por favor, utiliza otro.');
+        setError(
+          "El correo electrónico ya está en uso. Por favor, utiliza otro."
+        );
         return;
       }
 
       const response = await fetch(url, {
         method,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -61,20 +68,20 @@ const FormUsuariosContainer = () => {
       if (response.ok) {
         fetchData();
         setFormData({
-          name: '',
-          email: '',
+          name: "",
+          email: "",
           isActive: false,
-          password: '',
+          password: "",
           isAdmin: false,
           editingUserId: null,
         });
         setIsFormVisible(false);
-        setError('');
+        setError("");
       } else {
-        console.error('Error al enviar formulario:', response.statusText);
+        console.error("Error al enviar formulario:", response.statusText);
       }
     } catch (error) {
-      console.error('Error al enviar formulario:', error);
+      console.error("Error al enviar formulario:", error);
     }
   };
 
@@ -91,49 +98,52 @@ const FormUsuariosContainer = () => {
         isAdmin: userToEdit.isAdmin,
       });
       setIsFormVisible(true);
-      setError('');
+      setError("");
     } else {
-      console.error('Usuario no encontrado para editar');
+      console.error("Usuario no encontrado para editar");
     }
   };
 
   const handleCancel = () => {
     setFormData({
-      name: '',
-      email: '',
+      name: "",
+      email: "",
       isActive: false,
-      password: '',
+      password: "",
       isAdmin: false,
       editingUserId: null,
     });
     setIsFormVisible(false);
-    setError('');
+    setError("");
   };
 
   const handleDelete = async (userId) => {
     try {
-      const response = await fetch(`https://restaurantedb.onrender.com/api/usuarios/${userId}`, {
-        method: 'PUT',  // Cambiar a un método PUT para actualizar
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ isActive: false }),  // Enviar solo el cambio a isActive
-      });
-  
+      const response = await fetch(
+        `https://restaurantedb.onrender.com/api/usuarios/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ isActive: false }), // Enviar solo el cambio a isActive
+        }
+      );
+
       if (response.ok) {
         fetchData();
-        setError('');
+        setError("");
       } else {
-        console.error('Error al deshabilitar usuario:', response.statusText);
+        console.error("Error al deshabilitar usuario:", response.statusText);
       }
     } catch (error) {
-      console.error('Error al deshabilitar usuario:', error);
+      console.error("Error al deshabilitar usuario:", error);
     }
   };
 
   const handleAddUser = () => {
     setIsFormVisible(true);
-    setError('');
+    setError("");
   };
 
   return (
@@ -148,11 +158,15 @@ const FormUsuariosContainer = () => {
           error={error}
         />
       ) : (
-        <button className='btn btn-primary m-1' onClick={handleAddUser}>
+        <button className="btn btn-primary m-1" onClick={handleAddUser}>
           Agregar Usuario
         </button>
       )}
-      <UserTable users={users} handleEdit={handleEdit} handleDelete={handleDelete} />
+      <UserTable
+        users={users}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };

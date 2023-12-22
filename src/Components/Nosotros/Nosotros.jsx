@@ -1,36 +1,36 @@
-import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import icono from '../../assets/Nosotros/icon.png'
-import './nosotros.css'; 
+import React from "react";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import icono from "../../assets/Nosotros/icon.png";
+import "./nosotros.css";
 
 const miembrosDelEquipo = [
   {
-    nombre: 'Matias Vizcarra',
-    descripcion: 'Gerente del local.',
-    imagen: 'URL de la imagen 1',
+    nombre: "Matias Vizcarra",
+    descripcion: "Gerente del local.",
+    imagen: "URL de la imagen 1",
   },
   {
     nombre: "Lucas D'Mayo",
-    descripcion: 'Encargado de salón.',
-    imagen: 'URL de la imagen 2',
+    descripcion: "Encargado de salón.",
+    imagen: "URL de la imagen 2",
   },
   {
-    nombre: 'Franco Maidana',
-    descripcion: 'Encargado de Cocina.',
-    imagen: 'URL de la imagen 3',
+    nombre: "Franco Maidana",
+    descripcion: "Encargado de Cocina.",
+    imagen: "URL de la imagen 3",
   },
   {
-    nombre: 'Juan Burgos',
-    descripcion: 'Ayudante de cocina.',
-    imagen: 'URL de la imagen 4',
+    nombre: "Juan Burgos",
+    descripcion: "Ayudante de cocina.",
+    imagen: "URL de la imagen 4",
   },
 ];
 
 const Nosotros = () => {
   return (
-    <Container className=''>
+    <Container className="">
       <h1 className="titulosEquipo">Nuestro Equipo</h1>
-      <Row className='team-row'>
+      <Row className="team-row">
         {miembrosDelEquipo.map((miembro, indice) => (
           <Col key={indice} lg={4} md={6} sm={12}>
             <Card className="tarjetaEquipo">

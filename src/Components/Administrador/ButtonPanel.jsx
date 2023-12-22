@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import FormMenu from './Menu/FormMenu';
-import FormUsuariosContainer from './Usuarios/FormUsuarios';
-import FormPedidosContainer from './Pedidos/FormPedidosContainer';
-import './ButtonPanel.css';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import FormMenu from "./Menu/FormMenu";
+import FormUsuariosContainer from "./Usuarios/FormUsuarios";
+import FormPedidosContainer from "./Pedidos/FormPedidosContainer";
+import "./ButtonPanel.css";
 
 const ButtonPanel = () => {
   const [showFormUsuarios, setShowFormUsuarios] = useState(true);
@@ -31,13 +31,25 @@ const ButtonPanel = () => {
   return (
     <div className="button-panel">
       <div className="container-buttons">
-        <button onClick={handleUsuariosClick} type="button" className="btn btn-warning mx-3 buttons btn-lg">
+        <button
+          onClick={handleUsuariosClick}
+          type="button"
+          className="btn btn-warning mx-3 buttons btn-lg"
+        >
           Usuarios
         </button>
-        <button onClick={handleMenuClick} type="button" className="btn btn-warning mx-3 buttons btn-lg">
+        <button
+          onClick={handleMenuClick}
+          type="button"
+          className="btn btn-warning mx-3 buttons btn-lg"
+        >
           Menús
         </button>
-        <button onClick={handlePedidosClick} type="button" className="btn btn-warning mx-3 buttons btn-lg">
+        <button
+          onClick={handlePedidosClick}
+          type="button"
+          className="btn btn-warning mx-3 buttons btn-lg"
+        >
           Pedidos
         </button>
       </div>
